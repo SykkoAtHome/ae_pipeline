@@ -13,8 +13,6 @@ class AEVersion:
     year: str
     version: str
     platform: str
-    build: int
-    is_beta: bool = False
 
     @staticmethod
     def parse_version_string(version_str: str, build: int) -> 'AEVersion':
@@ -26,8 +24,7 @@ class AEVersion:
                 full_version="Unknown",
                 year="Unknown",
                 version="Unknown",
-                platform="Unknown",
-                build=build
+                platform="Unknown"
             )
 
         year, version, beta, platform = match.groups()
@@ -35,9 +32,7 @@ class AEVersion:
             full_version=version_str,
             year=year,
             version=version,
-            platform=platform,
-            build=build,
-            is_beta=bool(beta)
+            platform=platform
         )
 
     def to_dict(self) -> dict:

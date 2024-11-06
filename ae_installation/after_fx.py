@@ -4,7 +4,7 @@ import win32api
 from typing import Optional, Dict, List
 
 
-class AEInstallation:
+class AfterFX:
     DEFAULT_SEARCH_PATHS = [
         r"C:\Program Files\Adobe",
         r"C:\Program Files (x86)\Adobe"
@@ -43,9 +43,9 @@ class AEInstallation:
         except:
             return "Unknown"
 
-    def _clean_path(self, path: str) -> str:
-        """Convert path to normal Windows style (single backslashes)"""
-        return os.path.normpath(str(path))
+    def _clean_path(self, path: Path) -> str:
+        """Convert path to raw string with single backslashes"""
+        return str(path).replace('\\\\', '\\')
 
     def _get_installation_info(self, exe_path: Path) -> Optional[dict]:
         """Get version information for a single installation"""
